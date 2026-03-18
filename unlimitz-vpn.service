@@ -1,0 +1,14 @@
+[Unit]
+Description=Unlimitz VPN Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/.config/unlimitz-vpn/vpn-daemon.py
+Restart=on-failure
+RestartSec=3
+# Log to journald — view with: journalctl --user -u unlimitz-vpn -f
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

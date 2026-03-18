@@ -1,0 +1,42 @@
+// ─── waybar/config.jsonc — add "custom/vpn" to your modules ─────────────────
+//
+// In your modules-left / modules-center / modules-right add:
+//   "custom/vpn"
+//
+// Then paste this block anywhere in your config:
+
+"custom/vpn": {
+    "exec": "~/.config/unlimitz-vpn/waybar-vpn.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "python3 ~/.config/unlimitz-vpn/vpn-widget.py",
+    "tooltip": true,
+    "format": "{}",
+    "signal": 8
+}
+
+
+// ─── waybar/style.css ────────────────────────────────────────────────────────
+
+#custom-vpn {
+    padding: 0 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+#custom-vpn.connected {
+    color: #a6e3a1;
+    background: rgba(166, 227, 161, 0.1);
+}
+
+#custom-vpn.disconnected {
+    color: #f38ba8;
+    background: rgba(243, 139, 168, 0.1);
+}
+
+#custom-vpn.connecting {
+    color: #f9e2af;
+    background: rgba(249, 226, 175, 0.1);
+}

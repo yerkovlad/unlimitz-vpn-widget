@@ -1,0 +1,21 @@
+# Unlimitz VPN — sudoers rules
+# Allows the VPN daemon to manage TUN interface and routes without password.
+#
+# Install:
+#   sudo cp unlimitz-vpn-sudoers /etc/sudoers.d/unlimitz-vpn
+#   sudo chmod 440 /etc/sudoers.d/unlimitz-vpn
+#
+# Replace YOUR_USERNAME with your actual username (e.g. yevlad)
+
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip tuntap add dev tun0 *
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip tuntap del dev tun0 *
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip addr add * dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip link set dev tun0 *
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route add * dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route del * dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route add 0.0.0.0/1 dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route add 128.0.0.0/1 dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route del 0.0.0.0/1 dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route del 128.0.0.0/1 dev tun0
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route add */32 via * dev *
+YOUR_USERNAME ALL=(ALL) NOPASSWD: /usr/bin/ip route del */32
